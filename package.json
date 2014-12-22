@@ -2,23 +2,23 @@
   "name": "grunt-scorm-manifest",
   "description": "Generate a valid SCORM IMS manifest file.",
   "version": "0.2.0",
-  "homepage": "https://github.com/raygesualdo/grunt-scorm-manifest",
+  "homepage": "https://github.com/stalsma/grunt-scorm-manifest",
   "author": {
-    "name": "Ray Gesualdo",
-    "email": "webmaster@rjgesualdo.com",
+    "name": "Scott Talsma",
+    "email": "scott@tlasma.tv",
     "url": "rjgesualdo.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/raygesualdo/grunt-scorm-manifest.git"
+    "url": "git://github.com/stalsma/grunt-scorm-manifest.git"
   },
   "bugs": {
-    "url": "https://github.com/raygesualdo/grunt-scorm-manifest/issues"
+    "url": "https://github.com/stalsma/grunt-scorm-manifest/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/raygesualdo/grunt-scorm-manifest/blob/master/LICENSE-MIT"
+      "url": "https://github.com/stalsma/grunt-scorm-manifest/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
