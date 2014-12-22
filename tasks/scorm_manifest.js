@@ -2,7 +2,9 @@
  * grunt-scorm-manifest
  * https://github.com/stalsma/grunt-scorm-manifest
  *
- * Copyright (c) 2013 Ray Gesualdo
+ * Copyright (c) 2014 Scott Talsma
+ *
+ * Derived from work by Ray Gesualdo
  * Licensed under the MIT license.
  */
 
