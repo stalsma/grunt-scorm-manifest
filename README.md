@@ -102,7 +102,7 @@ common:
         id: 'commonResources',
         files: [{
             expand: true,       // required
-            cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+            cwd: '<%= config.dist %>',
             src: ['blank.html','misc/*.*','scripts/**.*','styles/**.*','PDFs/**.*','images/!(intro|splash|Module1|Module2|Module3|Module4)/**.*'],    // file selector (this example includes subdirectories)
             filter: 'isFile'    // required
         }]
@@ -164,7 +164,7 @@ Sample SCO
     includeCommonResources: true,
     files: [{
         expand: true,       // required
-        cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+        cwd: '<%= config.dist %>',
         src: ['intro/*.*','images/intro/*.*','images/splash/*.*'],    // file selector (this example includes subdirectories)
         filter: 'isFile'    // required
     }]
@@ -192,8 +192,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             launchPage: 'intro/splash.html',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['intro/*.*','images/intro/*.*','images/splash/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -205,8 +205,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             prereqId: 'sco_intro',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['PreAssessment/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -218,8 +218,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             prereqId: 'sco_preAssessment',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['Module1/*.*','images/Module1/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -231,8 +231,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             prereqId: 'sco_lesson1',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['Module2/*.*','images/Module2/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -244,8 +244,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             prereqId: 'sco_lesson2',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['Module3/*.*','images/Module3/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -257,8 +257,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             prereqId: 'sco_lesson3',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['Module4/*.*','images/Module4/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -271,8 +271,8 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                             masteryScore: '70',
                             includeCommonResources: true,
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
+                                expand: true,
+                                cwd: '<%= config.dist %>',
                                 src: ['PostAssessment/*.*'],    // file selector (this example includes subdirectories)
                                 filter: 'isFile'    // required
                             }]
@@ -282,9 +282,9 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
                         {
                             id: 'commonResources',
                             files: [{
-                                expand: true,       // required
-                                cwd: '<%= config.dist %>',          // start looking for files to list in the same dir as Gruntfile
-                                src: ['blank.html','misc/*.*','scripts/**.*','styles/**.*','PDFs/**.*','images/!(intro|splash|Module1|Module2|Module3|Module4)/**.*'],    // file selector (this example includes subdirectories)
+                                expand: true,
+                                cwd: '<%= config.dist %>',
+                                src: ['blank.html','misc/*.*','scripts/**.*','styles/**.*','PDFs/**.*','images/!(intro|splash|Module1|Module2|Module3|Module4)/**.*'],   
                                 filter: 'isFile'    // required
                             }]
                         }
@@ -294,4 +294,4 @@ This example creates a SCORM 1.2 IMS manifest. The manifest will be written to t
 ```
 
 ## Release History
-  * 2013-12-18   v0.2.0   Initial plugin release.
+  * 2014-12-18   v0.2.0   Initial plugin release based on work by Ray Gesualdo (raygesualdo/grunt-scorm-manifest)
