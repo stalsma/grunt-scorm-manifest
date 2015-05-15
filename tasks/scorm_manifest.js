@@ -233,17 +233,22 @@ module.exports = function (grunt) {
 
             //Write file to safe path
             options.path = unixifyPath(options.path);
-            grunt.file.delete(options.path + 'imsmanifest.xml');
-            grunt.file.write(options.path + 'imsmanifest.xml', prettyXmlDoc);
+
+            //load path module
+            var path = require('path');
+
+            var manifestPath = path.join( options.path, 'imsmanifest.xml')
+            grunt.file.delete(manifestPath);
+            grunt.file.write(manifestPath, prettyXmlDoc);
 
             //Leave a sucess message
-            grunt.log.writeln('File "' + options.path + 'imsmanifest.xml' + '" created.');
+            grunt.log.writeln('File "' + manifestPath + '" created.');
 
         }
     )
     ;
 
-//Helper function for Windows systems
+    //Helper function for Windows systems
     var unixifyPath = function (filepath) {
         if (process.platform === 'win32') {
             return filepath.replace(/\\/g, '/');
