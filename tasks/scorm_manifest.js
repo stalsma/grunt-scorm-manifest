@@ -80,15 +80,18 @@ module.exports = function (grunt) {
                         organization: {
                             '@identifier': options.courseId + '-org',
                             title: options.SCOtitle,
-                            //we have to drop each item into a list; otherwise the array will get collapsed to a single item
-                            //https://github.com/oozcitak/xmlbuilder-js/wiki/Conversion-From-Object
-                            '#list': []
+                            item: []
                         }
+                        // {
+                        //     //we have to drop each item into a list; otherwise the array will get collapsed to a single item
+                        //     //https://github.com/oozcitak/xmlbuilder-js/wiki/Conversion-From-Object
+                        //     'item': []
+                        // }
                     },
                     resources: {
                         //we have to drop each item into a list; otherwise the array will get collapsed to a single item
                         //https://github.com/oozcitak/xmlbuilder-js/wiki/Conversion-From-Object
-                        '#list': []
+                        'resource': []
                     }
                 }
             };
@@ -142,57 +145,71 @@ module.exports = function (grunt) {
                 return fileArr;
             };
 
-            if( options.common ) {
+            if (options.common) {
                 var fileArr = [];
-                options.common.files.forEach( function(fileBlock) {
-                    fileArr = fileArr.concat( parseFileBlockFn(fileBlock) );
+                options.common.files.forEach(function (fileBlock) {
+                    fileArr = fileArr.concat(parseFileBlockFn(fileBlock));
                 });
 
                 //need to push the follow attributes
                 //<resource identifier="ALLRESOURCES" type="webcontent" adlcp:scormtype="asset">
-                var resourceAttribs = {
-                    '@identifier': options.common.id,
-                    '@type': 'webcontent',
-                    '@adlcp:scormtype': 'asset'
+                var commonResource = {
+                    'resource': {
+                        '@identifier': options.common.id,
+                        '@type': 'webcontent',
+                        '@adlcp:scormtype': 'asset',
+                        'file': []
+                    },
                 };
-                fileArr.push(resourceAttribs);
 
-                xmlObj.manifest.resources['#list'].push({resource: fileArr});
+                fileArr.forEach(function (file) {
+                    commonResource.resource.file.push({'@href': file.file['@href']});
+                });
+
+                xmlObj.manifest.resources.resource.push(commonResource.resource);
             }
 
             options.scos.forEach(function (sco) {
                 grunt.log.ok('Building sco w/id ' + sco.id);
                 var newSco = {
-                    '@identifier': sco.id,
-                    '@identifierref': sco.id + '_resource',
-                    '@isvisible': 'true',
-                    title: sco.moduleTitle
+                    'item': {
+                        '@identifier': sco.id,
+                        '@identifierref': sco.id + '_resource',
+                        '@isvisible': 'true',
+                        title: sco.moduleTitle
+                    }
                 };
                 if (sco.prereqId) {
-                    newSco['adlcp:prerequisites'] = {
+                    newSco.item['adlcp:prerequisites'] = {
                         '#text': sco.prereqId,
                         '@type': 'aicc_script'
                     };
                 }
                 if (sco.masteryScore) {
-                    newSco['adlcp:masteryscore'] = sco.masteryScore;
+                    newSco.item['adlcp:masteryscore'] = sco.masteryScore;
                 }
 
-                xmlObj.manifest.organizations.organization['#list'].push({item: newSco});
+                xmlObj.manifest.organizations.organization.item.push(newSco.item);
 
                 //now deal with the resources for the currnet sco; each has an array of file blocks allocated
-                sco.files.forEach( function(fileBlock) {
-                    var fileArr = parseFileBlockFn( fileBlock );
+                sco.files.forEach(function (fileBlock) {
+                    var fileArr = parseFileBlockFn(fileBlock);
 
                     //need to push the follow attributes
                     //identifier="SCO1" type="webcontent" adlcp:scormtype="sco" href="html/PreAssessment/index.html">
-                    var resourceAttribs = {
-                        '@identifier': newSco['@identifierref'],
-                        '@type': 'webcontent',
-                        '@adlcp:scormtype': 'sco',
-                        '@href': options.courseSubDir + sco.launchPage
+                    var curResource = {
+                        'resource': {
+                            '@identifier': newSco.item['@identifierref'],
+                            '@type': 'webcontent',
+                            '@adlcp:scormtype': 'sco',
+                            '@href': options.courseSubDir + sco.launchPage,
+                            'file': []
+                        }
                     };
-                    fileArr.push(resourceAttribs);
+
+                    fileArr.forEach(function (file) {
+                        curResource.resource.file.push({'@href': file.file['@href']});
+                    });
 
                     //if the SCO uses the common resources section
                     if (sco.includeCommonResources) {
@@ -200,10 +217,10 @@ module.exports = function (grunt) {
                         var dependsNode = {
                             '@identifierref': options.common.id
                         };
-                        fileArr.push({dependency: dependsNode});
+                        curResource.resource.dependency = dependsNode;
                     }
 
-                    xmlObj.manifest.resources['#list'].push({resource: fileArr});
+                    xmlObj.manifest.resources.resource.push(curResource.resource);
 
                 }); //end sco.files.forEach
             });
@@ -246,7 +263,7 @@ module.exports = function (grunt) {
             //load path module
             var path = require('path');
 
-            var manifestPath = path.join( options.path, 'imsmanifest.xml');
+            var manifestPath = path.join(options.path, 'imsmanifest.xml');
             grunt.file.delete(manifestPath);
             grunt.file.write(manifestPath, prettyXmlDoc);
 
