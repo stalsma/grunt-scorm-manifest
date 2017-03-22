@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 					cwd: './',
 					src: ['**/*.*'], 
 					filter: 'isFile'
-				}],
+				}]
       },
       custom_options: {
         options: {
@@ -54,14 +54,14 @@ module.exports = function(grunt) {
 					cwd: './',
 					src: ['**.*'], 
 					filter: 'isFile'
-				}],
-      },
+				}]
+      }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+      tests: ['test/*_test.js']
+    }
 
   });
 
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'scorm_manifest', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'scorm_manifest:custom_options', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

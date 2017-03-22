@@ -12,6 +12,15 @@
 
 module.exports = function (grunt) {
 
+    //Helper function for Windows systems
+    var unixifyPath = function (filepath) {
+        if (process.platform === 'win32') {
+            return filepath.replace(/\\/g, '/');
+        } else {
+            return filepath;
+        }
+    };
+
     grunt.registerMultiTask('scorm_manifest', 'Generate a valid SCORM IMS manifest file.', function () {
 
             //Default options
@@ -125,7 +134,7 @@ module.exports = function (grunt) {
                             );
                             return true;
 
-                        };
+                        }
                     }); //end scoFiles.filter
 
                 }); //end fileBlock.src.forEach
@@ -237,7 +246,7 @@ module.exports = function (grunt) {
             //load path module
             var path = require('path');
 
-            var manifestPath = path.join( options.path, 'imsmanifest.xml')
+            var manifestPath = path.join( options.path, 'imsmanifest.xml');
             grunt.file.delete(manifestPath);
             grunt.file.write(manifestPath, prettyXmlDoc);
 
@@ -247,14 +256,5 @@ module.exports = function (grunt) {
         }
     )
     ;
-
-    //Helper function for Windows systems
-    var unixifyPath = function (filepath) {
-        if (process.platform === 'win32') {
-            return filepath.replace(/\\/g, '/');
-        } else {
-            return filepath;
-        }
-    };
 
 };

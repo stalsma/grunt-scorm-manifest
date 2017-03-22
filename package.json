@@ -1,12 +1,12 @@
 {
   "name": "grunt-scorm-manifest",
   "description": "Generate a valid SCORM IMS manifest file.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/stalsma/grunt-scorm-manifest",
   "author": {
     "name": "Scott Talsma",
-    "email": "scott@tlasma.tv",
-    "url": "rjgesualdo.com"
+    "email": "scott@talsma.tv",
+    "url": "talsma.tv"
   },
   "repository": {
     "type": "git",
@@ -23,24 +23,24 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-nodeunit": "~1.0.0",
+    "grunt": "~1.0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~1.0"
   },
   "keywords": [
     "gruntplugin"
   ],
   "dependencies": {
-    "xmlbuilder": "~1.1.2"
+    "xmlbuilder": "~8.0"
   }
 }
