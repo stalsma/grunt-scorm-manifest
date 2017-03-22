@@ -82,15 +82,8 @@ module.exports = function (grunt) {
                             title: options.SCOtitle,
                             item: []
                         }
-                        // {
-                        //     //we have to drop each item into a list; otherwise the array will get collapsed to a single item
-                        //     //https://github.com/oozcitak/xmlbuilder-js/wiki/Conversion-From-Object
-                        //     'item': []
-                        // }
                     },
                     resources: {
-                        //we have to drop each item into a list; otherwise the array will get collapsed to a single item
-                        //https://github.com/oozcitak/xmlbuilder-js/wiki/Conversion-From-Object
                         'resource': []
                     }
                 }
